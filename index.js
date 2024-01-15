@@ -2,9 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { OpenAI } = require("openai");
-
+require('dotenv').config();
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: process.env.API_KEY,
 });
 
 const app = express();
@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post("/answer", async (req, res) => {
-  // Your logic for handling the answer endpoint goes here
   try {
     const { message } = req.body;
     // console.log(message);
